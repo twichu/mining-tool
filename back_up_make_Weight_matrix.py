@@ -8,16 +8,18 @@ word2vec_model = gensim.models.Word2Vec.load('word2vec-model')
 keyword_set = []
 number_to_word_dic = {} #숫자를 집어넣으면 단어가 나옴
 word_to_number_dic = {} #단어를 집어넣으면 순서가 나옴
-KEYWORD_NUM = 44
+KEYWORD_NUM = 168
 WORD_NUM = 981586
 
 def init():
-    file = open("keyword.txt", "r")
-    temp_set = file.readline()
+    file = open("keyword_set", "r")
+    temp_set = file.readlines()
     file.close()
-    temp_set = temp_set.split(",")
     for word in temp_set:
-        keyword_set.append(manufacture_word(word))
+        keyword_set.append(manufacture_word(word).replace("\n", ""))
+    count = 0
+    for my in keyword_set:
+        print(my + "\n")
 
 def manufacture_word(word):
     manu_word = twiiter.pos(word)
@@ -36,14 +38,15 @@ if __name__ == "__main__":
         number_to_word_dic[str(number)] = word
         number += 1
 
+    count = 0
     for keyword_num in range(KEYWORD_NUM):
         for word_number in range(WORD_NUM):
             try:
                 weight_matrix[keyword_num][word_number] = word2vec_model.similarity(keyword_set[keyword_num], number_to_word_dic[str(word_number)])
             except:
                 weight_matrix[keyword_num][word_number] = 0
-
-        print(keyword_set[keyword_num], " 끝")
+        count += 1
+        print(count, " ",keyword_set[keyword_num], " 끝")
 
     np.save("Weight_matrix.npy", weight_matrix)
 
