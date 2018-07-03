@@ -11,12 +11,17 @@ with open('number_to_word_dic', 'rb') as handle:
     number_to_word_dic = pickle.load(handle)
 with open('word_to_number_dic', 'rb') as handle:
     word_to_number_dic = pickle.load(handle)
-KEYWORD_NUM = 168
+file = open("keyword_set", "r",encoding='utf8')
+temp_set = file.readlines()
+file.close()
+KEYWORD_NUM = 0
+for word in temp_set:
+    KEYWORD_NUM += 1
 WORD_NUM = 981586
 weight_matrix = np.load("Weight_matrix.npy")
 
 def init():
-    file = open("keyword_set", "r")
+    file = open("keyword_set", "r",encoding='utf8')
     temp_set = file.readlines()
     file.close()
     for word in temp_set:
