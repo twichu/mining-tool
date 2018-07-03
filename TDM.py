@@ -4,7 +4,6 @@ from konlpy.tag import Twitter
 import pickle
 
 twiiter = Twitter()
-word2vec_model = gensim.models.Word2Vec.load('word2vec-model')
 keyword_set = []
 number_to_word_dic = {} #숫자를 집어넣으면 단어가 나옴
 word_to_number_dic = {} #단어를 집어넣으면 순서가 나옴
