@@ -17,7 +17,7 @@ for word in temp_set:
 WORD_NUM = 981586
 
 def init():
-    file = open("keyword_set", "r",encoding='utf8')
+    file = open("keyword", "r",encoding='utf8')
     temp_set = file.readlines()
     file.close()
     for word in temp_set:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
             except:
                 weight_matrix[keyword_num][word_number] = 0
         count += 1
-        print(float("{0:.1f}".format((count / KEYWORD_NUM) * 100)), "%...")
+        print(count, keyword_set[keyword_num], float("{0:.1f}".format((count / KEYWORD_NUM) * 100)), "%...")
 
     np.save("Weight_matrix.npy", weight_matrix)
 
