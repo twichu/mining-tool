@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+﻿from pymongo import MongoClient
 import json
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -6,10 +6,10 @@ import re
 import TDM
 import urllib.parse
 
-username = urllib.parse.quote_plus('optlab_root')
-password = urllib.parse.quote_plus('optlab811!')
+username = urllib.parse.quote_plus('')
+password = urllib.parse.quote_plus('')
 
-client = MongoClient('mongodb://%s:%s@223.194.46.33:2701' % (username, password))
+client = MongoClient('' % (username, password))
 db = client.twichu
 UserTweets = db.userstweets
 Users = db.users
